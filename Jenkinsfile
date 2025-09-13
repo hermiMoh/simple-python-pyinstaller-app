@@ -21,15 +21,7 @@ pipeline {
             }
         }
         stage ('Deliver'){
-            agent {
-                docker {
-                    image 'python:3.9' // Use an official Python image with pip pre-installed
-                    reuseNode true // Optional: helps with workspace sharing
-                }
-            }
             steps {
-                // Now we are inside a fresh Python 3.9 container!
-                sh 'pip3 install pyinstaller' // Install pyinstaller inside this temporary containe
                 sh "pyinstaller --onefile sources/add2vals.py"
             }
             post {
